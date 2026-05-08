@@ -94,6 +94,15 @@ ComfyUI を再起動 → 右クリック → **Add Node** → **UkkeyHG** > **Im
 
 `selected_branch` 出力は **Show Text** ノードに繋ぐと、どのブランチが採用されたかリアルタイムで確認できてデバッグに便利です。
 
+## サンプルワークフロー
+
+リポジトリ同梱の `sample_workflow.json` を ComfyUI に **drag & drop** すれば、本ノードを使った最小ワークフローが復元されます（LoadImage → 3 並列の scale + pad → UkkeyHGImageSelector → VAE Encode (Inpaint) → KSampler → VAE Decode → SaveImage）。
+
+### サンプルが追加で必要とするもの
+
+- **kikotools 系カスタムノード** — サンプル内の `ImageScaleDownBy` ノードに使用。ComfyUI Manager から導入してください。本ノード自体は kikotools に依存しないので、ComfyUI コア標準の `ImageScaleBy` に差し替えれば依存ゼロで動きます
+- **SDXL inpainting checkpoint** — サンプルでは `SDXL/juggernautXLInpainting_xiInpainting.safetensors` を指定していますが、お手元の任意の SDXL inpainting checkpoint に差し替えてご利用ください
+
 ## 依存
 
 - ComfyUI 本体のみ（追加 pip パッケージ不要）
